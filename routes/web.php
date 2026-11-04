@@ -1,18 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\DatosController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
+//Se generan todas las rutas asociadas al controlador CategoryController
+Route::resource('categories', CategoryController::class);
+//Se generan todas las rutas asociadas al controlador AuthorController
+Route::resource('authors', AuthorController::class);
+//Se generan todas las rutas asociadas al controlador BookController
+Route::resource('books', BookController::class);
+
+//Ruta para acceder al index de datos
+Route::get('datos', [DatosController::class, 'index'])->name('datos.index');
+
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
